@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<title>Template Preguntas</title>
+
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <header>header</header>
+</body>
+<div>
+    <div class="bloque show" id="bloque0">
+        <div id="pregunta0"></div>
+        <form action="" id="todasLasPreguntas0">
+            <input type="radio" value="1" name="laRespuesta0"><span id="respuesta0A"></span>
+            <input type="radio" value="2" name="laRespuesta0"><span id="respuesta0B"></span>
+            <input type="radio" value="3" name="laRespuesta0"><span id="respuesta0C"></span>
+        </form>
+        <br>
+        <button onclick="removeClass0();">Siguiente Pregunta</button>
+    </div>
+    <div class="bloque hidden" id="bloque1">
+        <div id="pregunta1"></div>
+        <form action="" id="todasLasPreguntas1">
+            <input type="radio" value="1" name="laRespuesta1"><span id="respuesta1A"></span>
+            <input type="radio" value="2" name="laRespuesta1"><span id="respuesta1B"></span>
+            <input type="radio" value="3" name="laRespuesta1"><span id="respuesta1C"></span>
+        </form>
+        <button onclick="removeClass1();">Siguiente Pregunta</button>
+    </div>
+    <div class="bloque hidden" id="bloque2">
+        <div id="pregunta2"></div>
+        <form action="" id="todasLasPreguntas2">
+            <input type="radio" value="1" name="laRespuesta2"><span id="respuesta2A"></span>
+            <input type="radio" value="2" name="laRespuesta2"><span id="respuesta2B"></span>
+            <input type="radio" value="3" name="laRespuesta2"><span id="respuesta2C"></span>
+        </form>
+        <button onclick="removeClass2();">Siguiente Pregunta</button>
+    </div>
+    <div class="bloque hidden" id="bloque3">
+        <div id="pregunta3"></div>
+        <form action="" id="todasLasPreguntas3">
+            <input type="radio" value="1" name="laRespuesta3"><span id="respuesta3A"></span>
+            <input type="radio" value="2" name="laRespuesta3"><span id="respuesta3B"></span>
+            <input type="radio" value="3" name="laRespuesta3"><span id="respuesta3C"></span>
+        </form>
+        <button onclick="procesarRespuestas();">OK</button>
+    </div>
+    <div class="timer">
+        timer
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+//Arrays vacíos
+var preguntasFinalesArray = [];
+var misRespuestas = [];
+var misRespuestasInt = [];
+var lasRespuestasInt = [];
+var miRespuesta0 = [];
+var miRespuesta1 = [];
+var miRespuesta2 = [];
+var miRespuesta3 = [];
+
+// Todas las Preguntas
+var pregunta1 = {
+    pregunta: "¿Cual es la pregunta 1?",
+    opcionA: "respuesta A1",
+    opcionB: "respuesta B1",
+    opcionC: "respuesta C1",
+    respuesta: 1
+};
+var pregunta2 = {
+    pregunta: "¿Cual es la pregunta 2?",
+    opcionA: "respuesta A2",
+    opcionB: "respuesta B2",
+    opcionC: "respuesta C2",
+    respuesta: 1
+};
+var pregunta3 = {
+    pregunta: "¿Cual es la pregunta 3?",
+    opcionA: "respuesta A3",
+    opcionB: "respuesta B3",
+    opcionC: "respuesta C3",
+    respuesta: 1
+};
+var pregunta4 = {
+    pregunta: "¿Cual es la pregunta 4?",
+    opcionA: "respuesta A4",
+    opcionB: "respuesta B4",
+    opcionC: "respuesta C4",
+    respuesta: 1
+};
+var pregunta5 = {
+    pregunta: "¿Cual es la pregunta 5?",
+    opcionA: "respuesta A5",
+    opcionB: "respuesta B5",
+    opcionC: "respuesta C5",
+    respuesta: 1
+};
+var pregunta6 = {
+    pregunta: "¿Cual es la pregunta 6?",
+    opcionA: "respuesta A6",
+    opcionB: "respuesta B6",
+    opcionC: "respuesta C6",
+    respuesta: 1
+};
+var pregunta7 = {
+    pregunta: "¿Cual es la pregunta 7?",
+    opcionA: "respuesta A7",
+    opcionB: "respuesta B7",
+    opcionC: "respuesta C7",
+    respuesta: 1
+};
+var pregunta8 = {
+    pregunta: "¿Cual es la pregunta 8?",
+    opcionA: "respuesta A8",
+    opcionB: "respuesta B8",
+    opcionC: "respuesta C8",
+    respuesta: 1
+};
+var pregunta9 = {
+    pregunta: "¿Cual es la pregunta 9?",
+    opcionA: "respuesta A9",
+    opcionB: "respuesta B9",
+    opcionC: "respuesta C9",
+    respuesta: 1
+};
+var pregunta10 = {
+    pregunta: "¿Cual es la pregunta 10?",
+    opcionA: "respuesta A10",
+    opcionB: "respuesta B10",
+    opcionC: "respuesta C10",
+    respuesta: 1
+};
+var pregunta11 = {
+    pregunta: "¿Cual es la pregunta 11?",
+    opcionA: "respuesta A11",
+    opcionB: "respuesta B11",
+    opcionC: "respuesta C11",
+    respuesta: 1
+};
+var pregunta12 = {
+    pregunta: "¿Cual es la pregunta 12?",
+    opcionA: "respuesta A12",
+    opcionB: "respuesta B12",
+    opcionC: "respuesta C12",
+    respuesta: 1
+};
+var pregunta13 = {
+    pregunta: "¿Cual es la pregunta 13?",
+    opcionA: "respuesta A13",
+    opcionB: "respuesta B13",
+    opcionC: "respuesta C13",
+    respuesta: 1
+};
+var pregunta14 = {
+    pregunta: "¿Cual es la pregunta 14?",
+    opcionA: "respuesta A14",
+    opcionB: "respuesta B14",
+    opcionC: "respuesta C14",
+    respuesta: 1
+};
+var pregunta15 = {
+    pregunta: "¿Cual es la pregunta 15?",
+    opcionA: "respuesta A15",
+    opcionB: "respuesta B15",
+    opcionC: "respuesta C15",
+    respuesta: 1
+};
+var pregunta16 = {
+    pregunta: "¿Cual es la pregunta 16?",
+    opcionA: "respuesta A16",
+    opcionB: "respuesta B16",
+    opcionC: "respuesta C16",
+    respuesta: 1
+};
+var pregunta17 = {
+    pregunta: "¿Cual es la pregunta 17?",
+    opcionA: "respuesta A17",
+    opcionB: "respuesta B17",
+    opcionC: "respuesta C17",
+    respuesta: 1
+};
+var pregunta18 = {
+    pregunta: "¿Cual es la pregunta 18?",
+    opcionA: "respuesta A18",
+    opcionB: "respuesta B18",
+    opcionC: "respuesta C18",
+    respuesta: 1
+};
+var pregunta19 = {
+    pregunta: "¿Cual es la pregunta 19?",
+    opcionA: "respuesta A19",
+    opcionB: "respuesta B19",
+    opcionC: "respuesta C19",
+    respuesta: 1
+};
+var pregunta20 = {
+    pregunta: "¿Cual es la pregunta 20?",
+    opcionA: "respuesta A20",
+    opcionB: "respuesta B20",
+    opcionC: "respuesta C20",
+    respuesta: 1
+};
+
+var preguntasArray = [pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10, pregunta11, pregunta12, pregunta13, pregunta14, pregunta15, pregunta16, pregunta17, pregunta18, pregunta19, pregunta20, ];
+
+// Randomize las preguntas
+
+function randomize(a, b) {
+    return Math.random() - 0.5;
+}
+
+function primerasCuatro() {
+    preguntasArray.sort(randomize);
+    preguntasFinalesArray = [preguntasArray[0], preguntasArray[1], preguntasArray[2], preguntasArray[3]];
+}
+
+primerasCuatro();
+
+//Extraer las preguntas y respuestas finales
+
+var lasPreguntas = preguntasFinalesArray.map(function(a) {
+    return a.pregunta
+});
+var laOpcionA = preguntasFinalesArray.map(function(a) {
+    return a.opcionA
+});
+var laOpcionB = preguntasFinalesArray.map(function(a) {
+    return a.opcionB
+});
+var laOpcionC = preguntasFinalesArray.map(function(a) {
+    return a.opcionC
+});
+var lasRespuestas = preguntasFinalesArray.map(function(a) {
+    return a.respuesta
+});
+
+// Hardcode Print Valores
+
+// pregunta 1
+document.getElementById("pregunta0").innerHTML = lasPreguntas[0];
+
+document.getElementById("respuesta0A").innerHTML = laOpcionA[0];
+document.getElementById("respuesta0B").innerHTML = laOpcionB[0];
+document.getElementById("respuesta0C").innerHTML = laOpcionC[0];
+
+// pregunta 2
+
+document.getElementById("pregunta1").innerHTML = lasPreguntas[1];
+
+document.getElementById("respuesta1A").innerHTML = laOpcionA[1];
+document.getElementById("respuesta1B").innerHTML = laOpcionB[1];
+document.getElementById("respuesta1C").innerHTML = laOpcionC[1];
+
+// pregunta 3
+
+document.getElementById("pregunta2").innerHTML = lasPreguntas[2];
+
+document.getElementById("respuesta2A").innerHTML = laOpcionA[2];
+document.getElementById("respuesta2B").innerHTML = laOpcionB[2];
+document.getElementById("respuesta2C").innerHTML = laOpcionC[2];
+
+// pregunta 4
+
+document.getElementById("pregunta3").innerHTML = lasPreguntas[3];
+
+document.getElementById("respuesta3A").innerHTML = laOpcionA[3];
+document.getElementById("respuesta3B").innerHTML = laOpcionB[3];
+document.getElementById("respuesta3C").innerHTML = laOpcionC[3];
+
+// Botón Siguiente
+
+$('#bloque0 button').on('click', function(e) {
+	var inputsChecked = null;
+	var inputs = $(this).siblings('form').find('input');
+	console.log(inputs);
+	$.each(inputs, function() {
+		if($(this).val() != '') {
+			inputsChecked = true;
+		}
+	});
+	if(inputsChecked) {
+		removeClass0();
+	}
+	e.preventDefault();
+});
+
+function removeClass0() {
+    $("#bloque0").removeClass("show").addClass("hidden");
+    $("#bloque1").removeClass("hidden").addClass("show");
+
+}
+
+function removeClass1() {
+    $("#bloque1").removeClass("show").addClass("hidden");
+    $("#bloque2").removeClass("hidden").addClass("show");
+}
+
+function removeClass2() {
+    $("#bloque2").removeClass("show").addClass("hidden");
+    $("#bloque3").removeClass("hidden").addClass("show");
+}
+
+//Verificar Respuesta
+
+function procesarRespuestas() {
+    var miRespuesta0 = parseInt(document.getElementById("todasLasPreguntas0").elements.namedItem("laRespuesta0").value);
+    var miRespuesta1 = parseInt(document.getElementById("todasLasPreguntas1").elements.namedItem("laRespuesta1").value);
+    var miRespuesta2 = parseInt(document.getElementById("todasLasPreguntas2").elements.namedItem("laRespuesta2").value);
+    var miRespuesta3 = parseInt(document.getElementById("todasLasPreguntas3").elements.namedItem("laRespuesta3").value);
+
+    misRespuestas = [miRespuesta0, miRespuesta1, miRespuesta2, miRespuesta3];
+
+    misRespuestasInt = JSON.stringify(misRespuestas);
+    lasRespuestasInt = JSON.stringify(lasRespuestas);
+
+    if (misRespuestasInt == lasRespuestasInt) {
+        console.log(true);
+    } else {
+        console.log(false);
+    }
+}
+
+</script>
+
+</html>

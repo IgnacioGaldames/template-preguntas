@@ -1,0 +1,34 @@
+    .container {
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+
+        border-radius: 10px;
+        border: solid 1px lightgrey;
+        padding: 20px;
+    }
+    .bloque {
+        margin: 20px 0;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .show {
+        display: block;
+    }
+    
+    #barraProgreso {
+        background-color: grey;
+        height: 5px;
+    }
+    
+    .transicion {
+        width: 100%;
+        transition: width 20s;
+        -webkit-transition: width 20s;
+    }
+    .respuesta {
+        margin: 10px 0;
+    }
